@@ -113,3 +113,53 @@ nginx-sf-5c489dc78d-fpz25   1/1     Running   0          34m   10.244.3.22   sf-
 nginx-sf-5c489dc78d-hgtk2   1/1     Running   0          34m   10.244.4.20   sf-d-2-4-1-m05   <none>           <none>
 nginx-sf-5c489dc78d-sp62d   1/1     Running   0          34m   10.244.1.21   sf-d-2-4-1-m02   <none>           <none>
 ```
+
+```conf
+sf-webserver   ClusterIP   10.110.70.108   <none>        80/TCP    36m
+```
+
+> Запускаем отдельный под с alpine для проверки команды curl http://username1:password1@sf-webserver
+
+```conf
+kubectl run -ti  --rm debug  --image alpine  -- ash
+If you don't see a command prompt, try pressing enter.
+/ # apk add curl
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+(1/7) Installing ca-certificates (20230506-r0)
+(2/7) Installing brotli-libs (1.0.9-r14)
+(3/7) Installing libunistring (1.1-r1)
+(4/7) Installing libidn2 (2.3.4-r1)
+(5/7) Installing nghttp2-libs (1.53.0-r0)
+(6/7) Installing libcurl (8.1.0-r2)
+(7/7) Installing curl (8.1.0-r2)
+Executing busybox-1.36.0-r9.trigger
+Executing ca-certificates-20230506-r0.trigger
+OK: 12 MiB in 22 packages
+/ # curl http://username1:password1@sf-webserver
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```
