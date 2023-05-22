@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-sf
+  labels:
+    app: myapp-nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx-pod
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+     containers:
+      - name: nginx-container
+        image: morsh92/nginx_auth:1.21.1-alpine
+        env:
+         - name: SECRET_USERNAME
+           valueFrom:
+            secretKeyRef:
+              name: nginx-secrets
+              key: username
+         - name: SECRET_PASSWD
+           valueFrom:
+            secretKeyRef:
+              name: nginx-secrets
+              key: password  
+        ports:
+          - containerPort: 80
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: http.properties
+     volumes:
+      - name:  nginx-config
+        configMap:
+         name: nginx-test
