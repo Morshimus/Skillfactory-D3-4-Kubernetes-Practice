@@ -3,9 +3,9 @@
 ## Задание
 
 * [x] - :one: **Создать Deployment со свойствами ниже:**
-      - *образ — ~~nginx:1.21.1-alpine~~ morsh92/nginx_auth:1.21.1-alpine;*
-      - *имя — nginx-sf;*
-      - *количество реплик — 3.*
+       - *образ  ~~nginx:1.21.1-alpine~~ morsh92/nginx_auth:1.21.1-alpine;*
+       - *имя  nginx-sf;*
+       - *количество реплик  3.*
 
 > Немного улучшил исходный докер образ изменив entrypoint.
 
