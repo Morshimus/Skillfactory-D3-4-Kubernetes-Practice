@@ -6,10 +6,10 @@
       - *образ — ~~nginx:1.21.1-alpine~~ morsh92/nginx_auth:1.21.1-alpine;*
       - *имя — nginx-sf;*
       - *количество реплик — 3.*
-
       > Немного улучшил исходный докер образ изменив entrypoint.
 
-      ```Dockerfile
+
+```Dockerfile
       FROM nginx:1.21.1-alpine
 
       ENV SECRET_USERNAME=''
@@ -25,9 +25,9 @@
       STOPSIGNAL SIGQUIT
 
       CMD ["nginx", "-g", "daemon off;"]
-      ```
+```
 
-      ```sh      
+```sh      
       #!/bin/sh
       # vim:sw=4:ts=4:et
 
@@ -68,7 +68,7 @@
       echo "$SECRET_USERNAME:$SECRET_PASSWD" > /etc/nginx/.htpasswd
 
       exec "$@"
-      ```
+```
 
 * [x] - :two: **Создать конфигурационный файл для нашего приложения и поместить его в наш Pod со следующими свойствами:**
       - *путь до файла в Pod’е — /etc/nginx/nginx.conf;*
