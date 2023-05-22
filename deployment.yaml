@@ -21,12 +21,12 @@ spec:
          - name: SECRET_USERNAME
            valueFrom:
             secretKeyRef:
-              name: nginx-secrets
+              name: auth-basic
               key: username
          - name: SECRET_PASSWD
            valueFrom:
             secretKeyRef:
-              name: nginx-secrets
+              name: auth-basic
               key: password  
         ports:
           - containerPort: 80
