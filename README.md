@@ -107,3 +107,9 @@
 > Добавляем в nginx 2 строчки auth_basic и auth_basic_user_file
     
 
+```conf
+NAME                        READY   STATUS    RESTARTS   AGE   IP            NODE             NOMINATED NODE   READINESS GATES
+nginx-sf-5c489dc78d-fpz25   1/1     Running   0          34m   10.244.3.22   sf-d-2-4-1-m04   <none>           <none>
+nginx-sf-5c489dc78d-hgtk2   1/1     Running   0          34m   10.244.4.20   sf-d-2-4-1-m05   <none>           <none>
+nginx-sf-5c489dc78d-sp62d   1/1     Running   0          34m   10.244.1.21   sf-d-2-4-1-m02   <none>           <none>
+```
