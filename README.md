@@ -6,7 +6,9 @@
       - *образ — ~~nginx:1.21.1-alpine~~ morsh92/nginx_auth:1.21.1-alpine;*
       - *имя — nginx-sf;*
       - *количество реплик — 3.*
+
       > Немного улучшил исходный докер образ изменив entrypoint.
+
       ```Dockerfile
       FROM nginx:1.21.1-alpine
 
@@ -24,7 +26,8 @@
 
       CMD ["nginx", "-g", "daemon off;"]
       ```
-      ```sh
+
+      ```sh      
       #!/bin/sh
       # vim:sw=4:ts=4:et
 
