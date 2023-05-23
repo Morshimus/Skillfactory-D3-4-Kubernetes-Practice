@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: nginx-sf
   labels:
@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: nginx-pod
-  replicas: 3
+#  replicas: 5
   template:
     metadata:
       labels:
@@ -34,6 +34,14 @@ spec:
         - name: nginx-config
           mountPath: /etc/nginx/nginx.conf
           subPath: http.properties
+        livenessProbe:
+         exec:
+          command:
+          - curl 
+          - http://username1:password1@sf-webserver
+         initialDelaySeconds: 15
+         periodSeconds: 15
+     terminationGracePeriodSeconds: 30
      volumes:
       - name:  nginx-config
         configMap:
