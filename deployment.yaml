@@ -14,6 +14,20 @@ spec:
       labels:
         app: nginx-pod
     spec:
+     affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 10
+              preference:
+                matchExpressions:
+                  - key: performance
+                    operator: NotIn
+                    values:
+                      - high
+     #tolerations:
+     # - key: control-plane
+     #   operator: Exists
+     #   effect: NoSchedule
      containers:
       - name: nginx-container
         image: morsh92/nginx_auth:1.21.1-alpine
